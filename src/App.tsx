@@ -1,3 +1,10 @@
+/*
+* TODO: style the app with styled components
+* handle end game better
+* add error handling
+* add skeleton loading?
+* 
+*/
 import { useState } from 'react';
 import axios from 'axios';
 import { formatData } from './utils';
@@ -20,8 +27,10 @@ function App() {
   const [questions, setQuestions] = useState<FormattedQuestion[]>([]);
   const [isGameReady, setIsGameReady] = useState(false);
   const [difficulty, setDifficulty] = useState('Easy');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setLoading(true);
     const { data }: Response = await axios.get(`https://opentdb.com/api.php`, {
       params: {
         amount: parseInt(nmbrOfQuestions, 10),
@@ -33,7 +42,12 @@ function App() {
     } else {
       setIsGameReady(true);
       setQuestions(formatData(data.results));
+      setLoading(false);
     }
+  }
+
+  if (loading) {
+    return <div>Loading Game....</div>
   }
 
   return (

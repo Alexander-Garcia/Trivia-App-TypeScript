@@ -30,7 +30,7 @@ function QuestionCard ({ answers, correctAnswer, question }: Props) {
     <div>
       <h3>{question}</h3>
       <ul>
-        {answers.map((a) => <li onClick={handleClick}>{a}</li>)}
+        {answers.map((answer) => <li onClick={handleClick} key={answer}>{answer}</li>)}
       </ul>
     </div>
   )

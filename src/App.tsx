@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { formatData } from './utils';
+
+import type { FormattedQuestion, Question } from './types';
 
 import GameConfig from './components/GameConfig';
-import QuestionCard from './components/QuestionCard';
+import GameCard from './components/GameCard';
 
-type Question = {
-  category: string;
-  correct_answer: string;
-  difficulty: string;
-  incorrect_answers: string[];
-  question: string;
-  type: string;
-};
+
 type Response = {
   data: {
     response_code: number;
@@ -21,14 +17,14 @@ type Response = {
 
 function App() {
   const [nmbrOfQuestions, setNmbrOfQuestions] = useState('');
-  const [questions, setQuestions] = useState<Question[] | null>(null);
+  const [questions, setQuestions] = useState<FormattedQuestion[]>([]);
   const [isGameReady, setIsGameReady] = useState(false);
   const [difficulty, setDifficulty] = useState('Easy');
 
   const handleSubmit = async () => {
     const { data }: Response = await axios.get(`https://opentdb.com/api.php`, {
       params: {
-        amount: parseInt(nmbrOfQuestions,10),
+        amount: parseInt(nmbrOfQuestions, 10),
         difficulty: difficulty.toLowerCase(),
       },
     });
@@ -36,7 +32,7 @@ function App() {
       throw new Error('error fetching game data');
     } else {
       setIsGameReady(true);
-      setQuestions(data.results);
+      setQuestions(formatData(data.results));
     }
   }
 
@@ -44,7 +40,7 @@ function App() {
     <div className="App">
       <h1>Trivia</h1>
       { isGameReady
-        ? <QuestionCard/>
+        ? <GameCard questions={questions} />
         : <GameConfig 
             handleSubmit={handleSubmit}
             nmbrOfQuestions={nmbrOfQuestions}
@@ -57,3 +53,4 @@ function App() {
 }
 
 export default App;
+

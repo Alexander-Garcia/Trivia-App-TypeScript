@@ -1,38 +1,38 @@
 import { useCallback } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 /*
-* The options that trivia api can take are 
+* The options that trivia api can take are
 * Number of questions
 * difficulty: string; easy, medium, difficult
 */
 type Props = {
   handleSubmit: () => void;
-  nmbrOfQuestions: string;
-  setNmbrOfQuestions: Dispatch<SetStateAction<string>>;
+  numberOfQuestions: string;
+  setNumberOfQuestions: Dispatch<SetStateAction<string>>;
   setDifficulty: Dispatch<SetStateAction<string>>;
 };
 
-function GameConfig ({
+function GameConfig({
   handleSubmit,
-  nmbrOfQuestions,
-  setNmbrOfQuestions,
+  numberOfQuestions,
+  setNumberOfQuestions,
   setDifficulty,
 }: Props) {
   const selectOptions = ['Easy', 'Medium', 'Difficult'];
 
   const handleSelectChange = useCallback((e) => {
     setDifficulty(e.target.value);
-  }, []);
+  }, [setDifficulty]);
 
   const handleInputChange = useCallback((e) => {
-    setNmbrOfQuestions(e.target.value);
-  }, []);
+    setNumberOfQuestions(e.target.value);
+  }, [setNumberOfQuestions]);
 
   return (
     <div>
       <div>
-        <label htmlFor="nmbrOfQuestions">Total Number of Questions:</label>
-        <input onChange={handleInputChange} value={nmbrOfQuestions} type="text" placeholder="Set Number of Questions" id="nmbrOfQuestions" required/>
+        <label htmlFor="numberOfQuestions">Total Number of Questions:</label>
+        <input onChange={handleInputChange} value={numberOfQuestions} type="text" placeholder="Set Number of Questions" id="numberOfQuestions" />
       </div>
       <div>
         <label htmlFor="difficulty">Choose Difficulty:</label>
@@ -42,8 +42,7 @@ function GameConfig ({
       </div>
       <button onClick={handleSubmit}>Begin Game</button>
     </div>
-  )
+  );
 }
 
 export default GameConfig;
-

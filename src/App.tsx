@@ -22,7 +22,7 @@ type AxiosResponse = {
 };
 
 function App() {
-  const [numberOfQuestions, setNumberOfQuestions] = useState('');
+  const [numberOfQuestions, setNumberOfQuestions] = useState(10);
   const [questions, setQuestions] = useState<FormattedQuestion[]>([]);
   const [isGameReady, setIsGameReady] = useState(false);
   const [difficulty, setDifficulty] = useState('Easy');
@@ -35,7 +35,7 @@ function App() {
         'https://opentdb.com/api.php',
         {
           params: {
-            amount: parseInt(numberOfQuestions, 10),
+            amount: numberOfQuestions,
             difficulty: difficulty.toLowerCase(),
           },
         },

@@ -15,4 +15,4 @@ export type FormattedQuestion = {
   question: string;
   type: string;
   answers: string[];
-}
+};

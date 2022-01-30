@@ -7,8 +7,8 @@ import type { Dispatch, SetStateAction } from 'react';
 */
 type Props = {
   handleSubmit: () => void;
-  numberOfQuestions: string;
-  setNumberOfQuestions: Dispatch<SetStateAction<string>>;
+  numberOfQuestions: number;
+  setNumberOfQuestions: Dispatch<SetStateAction<number>>;
   setDifficulty: Dispatch<SetStateAction<string>>;
 };
 
@@ -32,7 +32,13 @@ function GameConfig({
     <div>
       <div>
         <label htmlFor="numberOfQuestions">Total Number of Questions:</label>
-        <input onChange={handleInputChange} value={numberOfQuestions} type="text" placeholder="Set Number of Questions" id="numberOfQuestions" />
+        <input
+          onChange={handleInputChange}
+          value={numberOfQuestions}
+          type="number"
+          placeholder="Set Number of Questions"
+          id="numberOfQuestions"
+        />
       </div>
       <div>
         <label htmlFor="difficulty">Choose Difficulty:</label>

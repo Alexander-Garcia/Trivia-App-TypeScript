@@ -9,20 +9,19 @@ type Props = {
   handleSubmit: () => void;
   nmbrOfQuestions: string;
   setNmbrOfQuestions: Dispatch<SetStateAction<string>>;
-  selectOption: string;
-  setSelectOption: Dispatch<SetStateAction<string>>;
+  setDifficulty: Dispatch<SetStateAction<string>>;
 };
 
 function GameConfig ({
   handleSubmit,
   nmbrOfQuestions,
   setNmbrOfQuestions,
-  setSelectOption,
+  setDifficulty,
 }: Props) {
   const selectOptions = ['Easy', 'Medium', 'Difficult'];
 
   const handleSelectChange = useCallback((e) => {
-    setSelectOption(e.target.value);
+    setDifficulty(e.target.value);
   }, []);
 
   const handleInputChange = useCallback((e) => {

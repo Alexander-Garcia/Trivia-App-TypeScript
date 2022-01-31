@@ -7,12 +7,19 @@
  */
 import { useState } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import formatData from './utils/index';
 
 import type { FormattedQuestion, Question } from './types';
 
 import GameConfig from './components/GameConfig';
 import GameCard from './components/GameCard';
+
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 type AxiosResponse = {
   data: {
@@ -57,7 +64,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <StyledApp>
       <h1>Trivia</h1>
       {isGameReady ? (
         <GameCard questions={questions} />
@@ -69,7 +76,7 @@ function App() {
           setDifficulty={setDifficulty}
         />
       )}
-    </div>
+    </StyledApp>
   );
 }
 

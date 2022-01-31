@@ -1,10 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createGlobalStyle } from 'styled-components';
+
+import puzzleImage from './images/puzzle.jpeg';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const GlobalStyles = createGlobalStyle`
+  body {
+    background-image: url(${puzzleImage});
+  }
+`;
+
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyles />
     <App />
   </React.StrictMode>,
   document.getElementById('root'),

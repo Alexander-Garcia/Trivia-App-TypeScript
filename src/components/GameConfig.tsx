@@ -1,10 +1,8 @@
 import { useCallback } from 'react';
+
+import type React from 'react';
 import type { Dispatch, SetStateAction } from 'react';
-/*
-* The options that trivia api can take are
-* Number of questions
-* difficulty: string; easy, medium, difficult
-*/
+
 type Props = {
   handleSubmit: () => void;
   numberOfQuestions: number;
@@ -20,12 +18,15 @@ function GameConfig({
 }: Props) {
   const selectOptions = ['Easy', 'Medium', 'Difficult'];
 
-  const handleSelectChange = useCallback((e) => {
-    setDifficulty(e.target.value);
+  const handleSelectChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDifficulty(e.currentTarget.value);
   }, [setDifficulty]);
 
-  const handleInputChange = useCallback((e) => {
-    setNumberOfQuestions(e.target.value);
+  const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.currentTarget.value, 10);
+    if (value) {
+      setNumberOfQuestions(value);
+    }
   }, [setNumberOfQuestions]);
 
   return (
@@ -43,7 +44,9 @@ function GameConfig({
       <div>
         <label htmlFor="difficulty">Choose Difficulty:</label>
         <select id="difficulty" onChange={handleSelectChange}>
-          {selectOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          {selectOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
         </select>
       </div>
       <button onClick={handleSubmit}>Begin Game</button>

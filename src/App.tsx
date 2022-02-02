@@ -1,8 +1,6 @@
 /*
  * TODO: style the app with styled components
  * handle end game better
- * add error handling
- * add skeleton loading?
  *
  */
 import { useState } from 'react';
@@ -19,6 +17,24 @@ const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const StyledGameCard = styled.div`
+  align-items: center;
+  border: 1px wavy;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px #fff;
+  display: flex;
+  flex-direction: column;
+  height: 23rem;
+  margin-top: 2.5rem;
+  width: 33%;
+
+`;
+
+const StyledH1 = styled.h1`
+  font-family: 'Permanent Marker', cursive;
+  font-size: 40px;
 `;
 
 type AxiosResponse = {
@@ -48,7 +64,7 @@ function App() {
         },
       );
       if (data?.response_code !== 0) {
-        throw new Error('error fetching game data');
+        throw new Error('Error with the response');
       } else {
         setIsGameReady(true);
         setQuestions(formatData(data.results));
@@ -65,17 +81,19 @@ function App() {
 
   return (
     <StyledApp>
-      <h1>Trivia</h1>
-      {isGameReady ? (
-        <GameCard questions={questions} />
-      ) : (
-        <GameConfig
-          handleSubmit={handleSubmit}
-          numberOfQuestions={numberOfQuestions}
-          setNumberOfQuestions={setNumberOfQuestions}
-          setDifficulty={setDifficulty}
-        />
-      )}
+      <StyledGameCard>
+        <StyledH1>Trivia App</StyledH1>
+        {isGameReady ? (
+          <GameCard questions={questions} />
+        ) : (
+          <GameConfig
+            handleSubmit={handleSubmit}
+            numberOfQuestions={numberOfQuestions}
+            setNumberOfQuestions={setNumberOfQuestions}
+            setDifficulty={setDifficulty}
+          />
+        )}
+      </StyledGameCard>
     </StyledApp>
   );
 }

@@ -1,7 +1,48 @@
 import { useCallback } from 'react';
+import styled from 'styled-components';
 
 import type React from 'react';
 import type { Dispatch, SetStateAction } from 'react';
+
+const StyledContainer = styled.div`
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 35%;
+  justify-content: space-around;
+  width: 97%;
+`;
+
+const Label = styled.label`
+  font-family: 'Permanent Marker', sans-serif;
+  font-size: 1.25rem;
+  margin-right: 10px;
+`;
+
+const Input = styled.input`
+  background-color: #ccc;
+  border-bottom-color: #2323ff;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-top-style: hidden;
+  height: 1.25rem;
+  &focus: {
+    box-shadow: 0 0 10px;
+    outline: none;
+    transition: box-shadow 1s;
+  }
+`;
+
+const Select = styled.select`
+  background-color: #ccc;
+  border-bottom-color: #2323ff;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  border-top-style: hidden;
+  height: 1.5rem;
+  margin-left: 1.8rem;
+  width: 9.7rem;
+`;
 
 type Props = {
   handleSubmit: () => void;
@@ -30,10 +71,10 @@ function GameConfig({
   }, [setNumberOfQuestions]);
 
   return (
-    <div>
+    <StyledContainer>
       <div>
-        <label htmlFor="numberOfQuestions">Total Number of Questions:</label>
-        <input
+        <Label htmlFor="numberOfQuestions">Number of Questions</Label>
+        <Input
           onChange={handleInputChange}
           value={numberOfQuestions}
           type="number"
@@ -42,15 +83,17 @@ function GameConfig({
         />
       </div>
       <div>
-        <label htmlFor="difficulty">Choose Difficulty:</label>
-        <select id="difficulty" onChange={handleSelectChange}>
+        <Label htmlFor="difficulty">Choose Difficulty</Label>
+        <Select id="difficulty" onChange={handleSelectChange}>
           {selectOptions.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
-        </select>
+        </Select>
       </div>
-      <button onClick={handleSubmit}>Begin Game</button>
-    </div>
+      <div>
+        <button onClick={handleSubmit}>Begin Game</button>
+      </div>
+    </StyledContainer>
   );
 }
 

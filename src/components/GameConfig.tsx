@@ -5,18 +5,17 @@ import type React from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
 const StyledContainer = styled.div`
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: 35%;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 97%;
 `;
 
 const Label = styled.label`
   font-family: 'Permanent Marker', sans-serif;
   font-size: 1.25rem;
-  margin-right: 10px;
 `;
 
 const Input = styled.input`
@@ -33,6 +32,13 @@ const Input = styled.input`
   }
 `;
 
+const OptionsContainer = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+`;
+
 const Select = styled.select`
   background-color: #ccc;
   border-bottom-color: #2323ff;
@@ -40,8 +46,7 @@ const Select = styled.select`
   border-right-style: hidden;
   border-top-style: hidden;
   height: 1.5rem;
-  margin-left: 1.8rem;
-  width: 9.7rem;
+  width: 9.4rem;
 `;
 
 type Props = {
@@ -67,13 +72,15 @@ function GameConfig({
     const value = parseInt(e.currentTarget.value, 10);
     if (value) {
       setNumberOfQuestions(value);
+    } else {
+      throw new Error('error setting up game');
     }
   }, [setNumberOfQuestions]);
 
   return (
     <StyledContainer>
-      <div>
-        <Label htmlFor="numberOfQuestions">Number of Questions</Label>
+      <OptionsContainer>
+        <Label htmlFor="numberOfQuestions">Questions</Label>
         <Input
           onChange={handleInputChange}
           value={numberOfQuestions}
@@ -81,15 +88,15 @@ function GameConfig({
           placeholder="Set Number of Questions"
           id="numberOfQuestions"
         />
-      </div>
-      <div>
-        <Label htmlFor="difficulty">Choose Difficulty</Label>
+      </OptionsContainer>
+      <OptionsContainer>
+        <Label htmlFor="difficulty">Difficulty</Label>
         <Select id="difficulty" onChange={handleSelectChange}>
           {selectOptions.map((option) => (
             <option key={option} value={option}>{option}</option>
           ))}
         </Select>
-      </div>
+      </OptionsContainer>
       <div>
         <button onClick={handleSubmit}>Begin Game</button>
       </div>

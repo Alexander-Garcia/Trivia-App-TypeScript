@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const AnswerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+`;
 
 type Props = {
   answers: string[];
@@ -16,10 +25,13 @@ function QuestionCard({ answers, correctAnswer, question }: Props) {
       console.log('correct');
     }
   };
+
   return (
     <div>
-      <h3>{question}</h3>
-      {answers.map((answer) => <button onClick={handleClick} key={answer}>{answer}</button>)}
+      <h3 dangerouslySetInnerHTML={{ __html: question }} />
+      <AnswerContainer>
+        {answers.map((answer) => <button onClick={handleClick} key={answer}>{answer}</button>)}
+      </AnswerContainer>
     </div>
   );
 }

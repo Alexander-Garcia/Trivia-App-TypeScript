@@ -25,10 +25,10 @@ const Input = styled.input`
   border-right-style: hidden;
   border-top-style: hidden;
   height: 1.25rem;
-  &focus: {
-    box-shadow: 0 0 10px;
+  &:focus {
+    box-shadow: 0 0 5px;
     outline: none;
-    transition: box-shadow 1s;
+    transition: box-shadow 0.3s;
   }
 `;
 
@@ -47,6 +47,18 @@ const Select = styled.select`
   border-top-style: hidden;
   height: 1.5rem;
   width: 9.4rem;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Button = styled.button`
+  background-color: #72cafc;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Permanent Marker', sans-serif;
+  height: 1.5rem;
+  width: 8rem;
 `;
 
 type Props = {
@@ -98,7 +110,7 @@ function GameConfig({
         </Select>
       </OptionsContainer>
       <div>
-        <button onClick={handleSubmit}>Begin Game</button>
+        <Button onClick={handleSubmit}>START</Button>
       </div>
     </StyledContainer>
   );

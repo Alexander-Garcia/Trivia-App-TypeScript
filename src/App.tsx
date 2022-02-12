@@ -19,14 +19,14 @@ const StyledApp = styled.div`
   align-items: center;
 `;
 
-const StyledGameCard = styled.div`
+const StyledGameContainer = styled.div`
   align-items: center;
   border: 1px wavy;
   border-radius: 1rem;
   box-shadow: 0 0 20px #fff;
   display: flex;
   flex-direction: column;
-  height: 23rem;
+  height: 25rem;
   margin-top: 2.5rem;
   width: 33%;
 
@@ -81,7 +81,7 @@ function App() {
 
   return (
     <StyledApp>
-      <StyledGameCard>
+      <StyledGameContainer>
         <StyledH1>Trivia App</StyledH1>
         {isGameReady ? (
           <GameCard questions={questions} />
@@ -93,7 +93,7 @@ function App() {
             setDifficulty={setDifficulty}
           />
         )}
-      </StyledGameCard>
+      </StyledGameContainer>
     </StyledApp>
   );
 }

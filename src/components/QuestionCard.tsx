@@ -4,9 +4,14 @@ import styled from 'styled-components';
 const AnswerContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100px;
+  height: 125px;
   justify-content: space-between;
   margin-bottom: 1rem;
+`;
+
+const Button = styled.button`
+  background-color: #dfdfdf;
+  height: 1.5rem;
 `;
 
 type Props = {
@@ -22,7 +27,9 @@ function QuestionCard({ answers, correctAnswer, question }: Props) {
     if (guess === correctAnswer) {
       // will need to style based on correct / incorrect answer
       // turn correct answer green and if incorrect style that selection to red
-      console.log('correct');
+      e.currentTarget.style.backgroundColor = '#3ef222';
+    } else if (guess !== correctAnswer) {
+      e.currentTarget.style.backgroundColor = '#ed071a';
     }
   };
 
@@ -30,7 +37,9 @@ function QuestionCard({ answers, correctAnswer, question }: Props) {
     <div>
       <h3 dangerouslySetInnerHTML={{ __html: question }} />
       <AnswerContainer>
-        {answers.map((answer) => <button onClick={handleClick} key={answer}>{answer}</button>)}
+        {answers.map((answer) => (
+          <Button dangerouslySetInnerHTML={{ __html: answer }} onClick={handleClick} key={answer} />
+        ))}
       </AnswerContainer>
     </div>
   );

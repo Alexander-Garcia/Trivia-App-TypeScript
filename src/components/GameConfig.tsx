@@ -4,12 +4,15 @@ import styled from 'styled-components';
 import type React from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 
+// styles
+import Button from '../styles/Button';
+
 const StyledContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
   height: 35%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   width: 97%;
 `;
 
@@ -50,15 +53,6 @@ const Select = styled.select`
   &:focus {
     outline: none;
   }
-`;
-
-const Button = styled.button`
-  background-color: #72cafc;
-  border: none;
-  border-radius: 4px;
-  font-family: 'Permanent Marker', sans-serif;
-  height: 1.5rem;
-  width: 8rem;
 `;
 
 type Props = {

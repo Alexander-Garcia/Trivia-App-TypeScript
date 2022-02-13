@@ -21,6 +21,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/button-has-type": "off",
     "react/jsx-uses-react": "off",
+    "react/no-array-index-key": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts", ".js", ".jsx"] }],
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks

@@ -84,7 +84,7 @@ function App() {
       <StyledGameContainer>
         <StyledH1>Trivia App</StyledH1>
         {isGameReady ? (
-          <GameCard questions={questions} />
+          <GameCard questions={questions} setIsGameReady={setIsGameReady} />
         ) : (
           <GameConfig
             handleSubmit={handleSubmit}

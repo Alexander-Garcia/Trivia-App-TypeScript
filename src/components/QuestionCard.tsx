@@ -1,16 +1,17 @@
-import React from 'react';
 import styled from 'styled-components';
 
-const AnswerContainer = styled.div`
+const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   height: 125px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-bottom: 1rem;
 `;
 
 const Button = styled.button`
   background-color: #dfdfdf;
+  border-radius: 4px;
+  cursor: pointer;
   height: 1.5rem;
 `;
 
@@ -25,8 +26,6 @@ function QuestionCard({ answers, correctAnswer, question }: Props) {
     // need to check if answer was correct
     const guess = e.currentTarget.innerText;
     if (guess === correctAnswer) {
-      // will need to style based on correct / incorrect answer
-      // turn correct answer green and if incorrect style that selection to red
       e.currentTarget.style.backgroundColor = '#3ef222';
     } else if (guess !== correctAnswer) {
       e.currentTarget.style.backgroundColor = '#ed071a';
@@ -36,11 +35,11 @@ function QuestionCard({ answers, correctAnswer, question }: Props) {
   return (
     <div>
       <h3 dangerouslySetInnerHTML={{ __html: question }} />
-      <AnswerContainer>
+      <StyledDiv>
         {answers.map((answer) => (
           <Button dangerouslySetInnerHTML={{ __html: answer }} onClick={handleClick} key={answer} />
         ))}
-      </AnswerContainer>
+      </StyledDiv>
     </div>
   );
 }
